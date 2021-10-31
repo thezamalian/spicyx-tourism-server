@@ -28,6 +28,14 @@ async function run() {
             res.send(packages);
         });
 
+        // getting all-packages
+        app.get('/manage-packages/', async (req, res) => {
+            const cursor = bookedPackageCollection.find({});
+            const bookedPackages = await cursor.toArray();
+            console.log('All booked Packages are loaded');
+            res.send(bookedPackages);
+        });
+
         // getting my-packages
         app.get('/my-packages/:email', async (req, res) => {
             const email = req.params.email;
